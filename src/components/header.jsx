@@ -1,4 +1,4 @@
-export function Header() {
+export function Header({ setStandard, setCalculated_bmi }) {
   return (
     <div className="container p-3 d-flex justify-content-between">
       <div className="d-flex align-items-center">
@@ -12,6 +12,26 @@ export function Header() {
           }}
         />
         <h2 className="px-3 mb-0">BMI Calculator</h2>
+      </div>
+      <div className="d-flex justify-content-between align-items-center">
+        <button
+          className="btn btn-outline-dark me-2"
+          onClick={() => {
+            setStandard(false);
+            setCalculated_bmi("");
+          }}
+        >
+          Imperial
+        </button>
+        <button
+          className="btn btn-outline-light"
+          onClick={() => {
+            setStandard(true);
+            setCalculated_bmi("");
+          }}
+        >
+          Metric
+        </button>
       </div>
     </div>
   );
