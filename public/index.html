@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI calc</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background: linear-gradient(to left, #23608e, #e4e4d9);
+        min-height: 100vh;
+      }
+      .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .results-container {
+        width: 100%;
+        max-width: 425px;
+        margin-top: 1rem;
+        padding: 0rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .emi-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 17px 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .emi-item:last-child {
+        border-bottom: none;
+      }
+      .emi-label {
+        font-size: 16px;
+        color: #4a5568;
+        font-weight: 500;
+      }
+      .emi-value {
+        font-size: 20px;
+        font-weight: 700;
+        color: #2d3748;
+      }
+      .emi-monthly {
+        color: black;
+      }
+
+      .emi-interest {
+        color: black;
+      }
+
+      .emi-total {
+        color: black;
+      }
+
+      .emi-principal {
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">Root element</div>
+    <script src="../src/index.js" type="javascript/jsx"></script>
+  </body>
+</html>
