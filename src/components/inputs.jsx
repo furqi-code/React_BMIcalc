@@ -1,18 +1,54 @@
-export function Input({
-  height_inchesRef,
-  heightRef,
-  weightRef,
-  bmi,
-  calculated_bmi,
-  standard,
-}) {
+import { useRef } from "react";
+
+export function Input({ standard, setCalculated_bmi, calculated_bmi }) {
+  const weightRef = useRef();
+  const heightRef = useRef();
+  const height_inchesRef = useRef();
+  
+  const invalidInputField = () => {
+    alert("Input fields shouldn't be empty, Zero or negative numbers");
+    setCalculated_bmi("");
+    weightRef.current.value = "";
+    heightRef.current.value = "";
+    if (!standard)
+      height_inchesRef.current.value = "";
+  };
+
+  // Multiplication, division, subtraction auto-convert strings → numbers
+  const calculate = () => {
+    let weight = weightRef.current.value;
+    if (standard) {
+      // Metric system 
+      let height = heightRef.current.value;
+      if (!weight || !height || weight <= 0 || height <= 0) {
+        invalidInputField();
+        return;
+      }
+      let bmi = weight / (height * height);
+      console.log(bmi);
+      setCalculated_bmi(bmi.toFixed(2));
+    } else {
+      // Imperial system
+      let feet = parseFloat(heightRef.current.value);
+      let inches = parseFloat(height_inchesRef.current.value);
+      let totalInches = (feet * 12) + inches;
+      if (!weight || !feet || weight <= 0 || feet <= 0 || inches < 0 || isNaN(inches)) {
+        invalidInputField();
+        return;
+      }
+      let bmi = (703 * weight) / (totalInches * totalInches);
+      console.log(bmi);
+      setCalculated_bmi(bmi.toFixed(2));
+    }
+  };
+
   return (
     <>
       <form>
         {standard && (
           <div className="d-block">
             <div className="p-2">
-              <label for="weight" className="form-label">
+              <label htmlFor="weight" className="form-label">
                 Weight
               </label>
               <input
@@ -26,7 +62,7 @@ export function Input({
               />
             </div>
             <div className="p-2">
-              <label for="height" className="form-label">
+              <label htmlFor="height" className="form-label">
                 Height
               </label>
               <input
@@ -43,7 +79,7 @@ export function Input({
               <button
                 type="button"
                 className="btn btn-outline-success"
-                onClick={() => bmi()}
+                onClick={() => calculate()}
               >
                 Compute =
               </button>
@@ -55,7 +91,7 @@ export function Input({
         {!standard && (
           <div className="d-block" style={{ width: "275px" }}>
             <div className="p-2">
-              <label for="weight" className="form-label">
+              <label htmlFor="weight" className="form-label">
                 Weight
               </label>
               <input
@@ -69,7 +105,7 @@ export function Input({
               />
             </div>
             <div className="p-2">
-              <label for="heightFeet" className="form-label">
+              <label htmlFor="heightFeet" className="form-label">
                 Height
               </label>
               <div className="d-flex">
@@ -97,7 +133,7 @@ export function Input({
               <button
                 type="button"
                 className="btn btn-outline-success"
-                onClick={() => bmi()}
+                onClick={() => calculate()}
               >
                 Compute =
               </button>

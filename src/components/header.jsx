@@ -1,4 +1,4 @@
-export function Header({ setStandard, setCalculated_bmi }) {
+export function Header({ standard, setStandard, setCalculated_bmi }) {
   return (
     <div className="container p-3 d-flex justify-content-between">
       <div className="d-flex align-items-center">
@@ -15,7 +15,8 @@ export function Header({ setStandard, setCalculated_bmi }) {
       </div>
       <div className="d-flex justify-content-between align-items-center">
         <button
-          className="btn btn-outline-dark me-2"
+          className={`btn ${!standard ? "btn-dark" : "btn-outline-dark"} me-2`}
+          disabled={!standard}
           onClick={() => {
             setStandard(false);
             setCalculated_bmi("");
@@ -24,7 +25,8 @@ export function Header({ setStandard, setCalculated_bmi }) {
           Imperial
         </button>
         <button
-          className="btn btn-outline-light"
+          className={`btn ${standard ? "btn-light" : "btn-outline-light"}`}
+          disabled={standard}
           onClick={() => {
             setStandard(true);
             setCalculated_bmi("");
